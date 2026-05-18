@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom";
 const GameSection = () => {
   const [games, setGames] = useState([
     {
+      name: "Car Rash",
+      description:
+        "Dodge traffic at breakneck speeds down a high-octane neon cyberpunk highway. How long can you survive the heat of Car Rash?",
+      link: "/car-rash",
+    },
+    {
       name: "Guess the Hex",
       description:
         "Put your color-matching skills to the test! Match the Hex code to its perfect color card and become the ultimate shade master!",
