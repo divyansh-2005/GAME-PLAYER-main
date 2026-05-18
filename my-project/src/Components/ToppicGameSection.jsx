@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 const ToppicGameSection = () => {
   const [games, setGames] = useState([
     {
+      name: "Car Rash",
+      description: "Dodge traffic at breakneck speeds down a high-octane neon cyberpunk highway. Survive the heat!",
+      link: "/car-rash",
+    },
+    {
       name: "Realm Rush",
       description: "Save Your Gold Enventory with fight with Enemy.",
       link: "/realmrush",

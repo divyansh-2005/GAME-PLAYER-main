@@ -25,6 +25,17 @@ export const TmaProvider = ({ children }) => {
       }
       setTelegramUser(user);
       await fetchTelegramUserfromDatabes(user);
+      
+      // Fetch full user record from DB to get the saved points
+      const dbUserResponse = await axios.get(
+        `${apiUrl}user/fetch?telegramId=${user.id}`
+      );
+      if (dbUserResponse.data) {
+        setTelegramUser((prevUser) => ({
+          ...prevUser,
+          ...dbUserResponse.data,
+        }));
+      }
     } catch (error) {
       setIsError(true);
     } finally {
@@ -55,9 +66,37 @@ export const TmaProvider = ({ children }) => {
     }
   };
 
+  const updateUserPoints = async (pointsToAdd) => {
+    const tid = telegramUser?.telegramId || telegramUser?.id;
+    if (!tid) return;
+    try {
+      const response = await axios.post(
+        `${apiUrl}user/update-points`,
+        {
+          telegramId: String(tid),
+          points: pointsToAdd,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.data && response.data.points !== undefined) {
+        setTelegramUser((prevUser) => ({
+          ...prevUser,
+          points: response.data.points,
+        }));
+        console.log(`Successfully updated points in DB. New total: ${response.data.points}`);
+      }
+    } catch (error) {
+      console.error("Error updating user points in database:", error);
+    }
+  };
+
   return (
     <TmaContext.Provider
-      value={{ user: telegramUser, isLoading, isError, setIsLoading }}
+      value={{ user: telegramUser, isLoading, isError, setIsLoading, updateUserPoints }}
     >
       {children}
     </TmaContext.Provider>

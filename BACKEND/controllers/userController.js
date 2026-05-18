@@ -24,7 +24,7 @@ const saveUser = async (req, res) => {
 
 const fetchUser = async (req, res) => {
   try {
-    const { telegramId } = req.body;
+    const telegramId = req.query.telegramId || req.body.telegramId;
 
     if (!telegramId) {
       return res.status(400).send("telegramId is required");
@@ -42,7 +42,33 @@ const fetchUser = async (req, res) => {
   }
 };
 
+const updatePoints = async (req, res) => {
+  try {
+    const { telegramId, points } = req.body;
+
+    if (!telegramId || points === undefined) {
+      return res.status(400).send("telegramId and points are required");
+    }
+
+    const user = await User.findOneAndUpdate(
+      { telegramId },
+      { $inc: { points: Number(points) } },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    res.status(200).send(user);
+  } catch (error) {
+    console.error("Error updating user points:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 module.exports = {
   saveUser,
   fetchUser,
+  updatePoints,
 };

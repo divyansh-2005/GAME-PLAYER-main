@@ -27,9 +27,9 @@ const WordGuessingGame = () => {
 
   const randomWordObject =
     wordList[Math.floor(Math.random() * wordList.length)];
-  const [word] = useState(randomWordObject.word);
-  const [clue] = useState(randomWordObject.clue);
-  const [category] = useState(randomWordObject.category);
+  const [word, setWord] = useState(randomWordObject.word);
+  const [clue, setClue] = useState(randomWordObject.clue);
+  const [category, setCategory] = useState(randomWordObject.category);
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState(0);
   const maxWrongGuesses = 6;
@@ -79,8 +79,9 @@ const WordGuessingGame = () => {
     setWrongGuesses(0);
     const randomWordObject =
       wordList[Math.floor(Math.random() * wordList.length)];
-    word = randomWordObject.word;
-    clue = randomWordObject.clue;
+    setWord(randomWordObject.word);
+    setClue(randomWordObject.clue);
+    setCategory(randomWordObject.category);
   };
 
   const isWinner = word

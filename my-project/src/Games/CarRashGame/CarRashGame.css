@@ -1,0 +1,315 @@
+.car-rash-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #07040d;
+  background-image: radial-gradient(circle at center, #1b0a2a 0%, #07040d 100%);
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.game-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: 15px;
+}
+
+.back-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  color: #00ffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  font-size: 13px;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+.back-btn:hover {
+  background: rgba(0, 255, 255, 0.15);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  border-color: #00ffff;
+}
+
+.neon-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: #ff007f;
+  text-shadow: 0 0 8px rgba(255, 0, 127, 0.6), 0 0 20px rgba(255, 0, 127, 0.3);
+  letter-spacing: 2px;
+}
+
+.score-board {
+  display: flex;
+  gap: 10px;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(22, 17, 41, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  min-width: 60px;
+}
+
+.stat-box.cyan {
+  border-color: rgba(0, 255, 255, 0.4);
+}
+
+.stat-box.pink {
+  border-color: rgba(255, 0, 127, 0.4);
+}
+
+.stat-label {
+  font-size: 9px;
+  color: #aaa;
+  margin-bottom: 2px;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: inherit;
+}
+
+.stat-box.cyan .stat-value {
+  color: #00ffff;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.stat-box.pink .stat-value {
+  color: #ff007f;
+  text-shadow: 0 0 5px rgba(255, 0, 127, 0.5);
+}
+
+/* Game Canvas & Overlay Frame */
+.game-container {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(255, 0, 127, 0.25), 0 0 50px rgba(0, 255, 255, 0.15);
+  border: 2px solid rgba(255, 0, 127, 0.3);
+}
+
+.game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Glassmorphism Overlays */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 9, 26, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.overlay-content {
+  text-align: center;
+  padding: 30px;
+  width: 85%;
+  box-sizing: border-box;
+}
+
+.cyber-glitch {
+  font-size: 32px;
+  font-weight: 900;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 2px 2px #ff007f;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.description {
+  font-size: 13px;
+  color: #b8b2d1;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.key-guides {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+.guide-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.key-cap {
+  background: #251b45;
+  border: 1px solid #ff007f;
+  box-shadow: 0 3px 0 #ff007f;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.guide-text {
+  font-size: 12px;
+  color: #8f85b8;
+}
+
+.neon-play-btn {
+  background: #ff007f;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-family: inherit;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+  transition: all 0.3s ease;
+}
+
+.neon-play-btn:hover {
+  background: #ff3399;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255, 0, 127, 0.9);
+}
+
+/* Game Over Overlay Specifics */
+.final-score {
+  font-size: 20px;
+  color: #b8b2d1;
+  margin-bottom: 15px;
+}
+
+.score-num {
+  font-size: 32px;
+  font-weight: bold;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  margin-left: 8px;
+}
+
+.database-success {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #00ffff;
+  margin-bottom: 25px;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+.overlay-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.neon-play-btn.retry {
+  background: #00ffff;
+  color: #0d091a;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.neon-play-btn.retry:hover {
+  background: #33ffff;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+}
+
+.neon-play-btn.exit {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #aaa;
+  box-shadow: none;
+}
+
+.neon-play-btn.exit:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Touch Control buttons for TMA / Mobile Devices */
+.mobile-controls-panel {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: none; /* Only show on smaller touch displays */
+  justify-content: space-between;
+  padding: 0 35px;
+  pointer-events: none;
+}
+
+.mobile-steer-btn {
+  pointer-events: auto;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: rgba(22, 17, 41, 0.7);
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  color: #00ffff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+  transition: all 0.15s ease;
+}
+
+.mobile-steer-btn:active {
+  background: rgba(0, 255, 255, 0.25);
+  border-color: #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  transform: scale(0.95);
+}
+
+.mobile-steer-btn.right {
+  border-color: rgba(255, 0, 127, 0.4);
+  color: #ff007f;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.15);
+}
+
+.mobile-steer-btn.right:active {
+  background: rgba(255, 0, 127, 0.25);
+  border-color: #ff007f;
+  box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
+}
+
+@media (max-width: 768px) {
+  .mobile-controls-panel {
+    display: flex;
+  }
+}
