@@ -235,6 +235,11 @@ const GameSection = () => {
       description:
         "Challenge to balance the ball.",
       link: "/rollingBall",
+    },{
+      name: "Car Rush",
+      description:
+        "Dodge incoming traffic in this high-speed car racing game! Use arrow keys to switch lanes and survive as long as you can.",
+      link: "/car-rush",
     },
   ]);
 
